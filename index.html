@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <title>Tarefas do Thiago</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand">Tarefas</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <div class="line-actions">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="newTask()">
+                    Nova tarefa
+                </button>
+
+                <button type="button" class="btn btn-success" id="btn-show-task-completed" onclick="showTasksCompleted()">
+                    Mostrar concluídas
+                </button>
+            </div>
+
+        </section>
+
+        <section class="container" id="tasks-list">
+            
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="createTaksForm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nova tarefa</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="">
+                            <input id="task-id-input" class="form-control" type="hidden">
+                            <div class="form-group">
+                                <label for="">Título</label>
+                                <select name="responsible" class="form-select"
+                                    aria-label="Default select example"
+                                    id="task-username-input">
+                                    <option selected>-- Selecionar Responsavel -- </option>
+                                    <option value="Thiago">Thiago</option>
+                                    <option value="Rafael">Rafael</option>
+                                    <option value="Gabriel">Gabriel</option>
+                                </select>
+                            </div>
+    
+                            <div class="formc-group">
+                                <label for="">Título</label>
+                                <input id="task-title-input" class="form-control" type="name" name="title">
+                            </div>
+                            <div class="formc-group">
+                                <label for="">Descrição</label>
+                                <textarea id="task-description-input" class="form-control" type="name" name="description">
+                                </textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" id="btn-create" onclick="createTaks()" data-bs-dismiss="modal">Criar</button>
+                        <button type="button" class="btn btn-primary" id="btn-edit" style="display: none;" onclick="updateTaks()" data-bs-dismiss="modal">Editar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script/jquery.min.js"></script>
+    <script src="script/bootstrap.min.js"></script>
+
+    
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-database.js"></script>
+
+
+    <script src="script/script.js"></script>
+</body>
+
+</html>
