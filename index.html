@@ -27,10 +27,6 @@
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="newTask()">
                     Nova tarefa
                 </button>
-
-                <button type="button" class="btn btn-success" id="btn-show-task-completed" onclick="showTasksCompleted()">
-                    Mostrar concluídas
-                </button>
             </div>
 
         </section>
@@ -56,17 +52,16 @@
                         <form action="">
                             <input id="task-id-input" class="form-control" type="hidden">
                             <div class="form-group">
-                                <label for="">Título</label>
+                                <label for="">Responsável</label>
                                 <select name="responsible" class="form-select"
                                     aria-label="Default select example"
                                     id="task-username-input">
-                                    <option selected>-- Selecionar Responsavel -- </option>
+                                    <option selected>-- Selecionar Responsável -- </option>
+                                    <option value="Renata">Renata</option>
                                     <option value="Thiago">Thiago</option>
-                                    <option value="Rafael">Rafael</option>
-                                    <option value="Gabriel">Gabriel</option>
                                 </select>
                             </div>
-    
+
                             <div class="formc-group">
                                 <label for="">Título</label>
                                 <input id="task-title-input" class="form-control" type="name" name="title">

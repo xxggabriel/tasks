@@ -240,27 +240,14 @@ const task_database = {};
     task_database.remove = remove_task
 
 })()
-
+totalTasks = 0
 $(function () {
-
     loadTasks()
 })
 
-let showTasks = true
-function showTasksCompleted(){
-    showTasks = !showTasks
-
-    if(showTasks){
-        $("#btn-show-task-completed").html("Mostrar concluídas")
-    } else {
-        $("#btn-show-task-completed").html("Mostrar não concluídas")
-    }
-
-    loadTasks()
-}
 
 function loadTasks(){
-    console.log("loadTask");
+    totalTasks = 0
     tasks = task_database.showAll()
     tasks.then((values) => {
         $("#tasks-list").html('')
@@ -270,21 +257,18 @@ function loadTasks(){
                 <p style="text-align: center;margin-top: 50px;"><b>Nenhuma tarefa criada</b></p>
             `)
         } else {
-            Object.keys(values).forEach(key => {
+            Object.keys(values).sort(function(a, b){
+                return values[a].createdat > values[b].createdat;
+            }).forEach(key => {
+                totalTasks += 1;
                 let task = values[key];
     
-                
-
-                if(task.completed == showTasks){
-                    
-                    return;
-                }
-    
-                $("#tasks-list").prepend(`
-                    <div class="tasks-card" id="task-item-${key}">
+                $("#tasks-list").append(`
+                    <div class="tasks-card ${task.completed ? 'task-completed' : ''}" id="task-item-${key}">
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="tasks-header">
+                                    <h4 class="tasks-number">Nº ${task.number ?? 'sem número'}</h4>
                                     <h1 class="tasks-title">${task.title}</h1>
                                 </div>
                                 <div class="tasks-body">
@@ -336,16 +320,24 @@ function doneTask(taskId){
 }
 
 function createTaks(){
-    task = {
-        userName: $("#task-username-input option:selected").val(),
-        title: $("#task-title-input").val(),
-        description: $("#task-description-input").val(),
-        completed: false,
-        createdat: firebase.database.ServerValue.TIMESTAMP,	
-    }
+
+    tasks = task_database.showAll()
+    tasks.then((values) => {
+        
+        task = {
+            number: totalTasks + 1,
+            userName: $("#task-username-input option:selected").val(),
+            title: $("#task-title-input").val(),
+            description: $("#task-description-input").val(),
+            completed: false,
+            createdat: firebase.database.ServerValue.TIMESTAMP,	
+        }
+        
+        task_database.new(task);
+        loadTasks()
+    })
+
     
-    task_database.new(task);
-    loadTasks()
 }
 
 function editTask(id, title, description, userName){
@@ -381,6 +373,8 @@ function updateTaks(){
 }
 
 function removeTask(key){
-    task_database.remove(key)
-    loadTasks()
+    if(confirm("Você realmente quer excluir essa tarefa?")){
+        task_database.remove(key)
+        loadTasks()
+    }
 }
