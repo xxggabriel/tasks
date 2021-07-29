@@ -263,7 +263,7 @@ function loadTasks(){
                 totalTasks += 1;
                 let task = values[key];
     
-                $("#tasks-list").append(`
+                $("#tasks-list").prepend(`
                     <div class="tasks-card ${task.completed ? 'task-completed' : ''}" id="task-item-${key}">
                         <div class="row">
                             <div class="col-md-10">
