@@ -24,15 +24,33 @@
     <main>
         <section class="container">
             <div class="line-actions">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="newTask()">
-                    Nova tarefa
-                </button>
+                <div class="row">
+                    <div class="column">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" onclick="newTask()">
+                            Nova tarefa
+                        </button>
+                    </div>
+                    <div class="column" style="margin-top: 15px;">
+                        <select class="form-select" onclick="showTasksPainel()"
+                            id="painel-task">
+                            <option value="" selected>-- Todos --</option>
+                            <option value="Thiago">Thiago</option>
+                            <option value="Bruno">Bruno</option>
+                            <option value="Júlia">Júlia</option>
+                            <option value="Clarice">Clarice</option>
+                            <option value="Darielle">Darielle</option>
+                            <option value="Renata">Renata</option>
+                        </select>
+                    </div>
+                </div>
+
             </div>
 
         </section>
 
         <section class="container" id="tasks-list">
-            
+
         </section>
     </main>
     <footer>
@@ -53,8 +71,7 @@
                             <input id="task-id-input" class="form-control" type="hidden">
                             <div class="form-group">
                                 <label for="">Responsável</label>
-                                <select name="responsible" class="form-select"
-                                    aria-label="Default select example"
+                                <select name="responsible" class="form-select" aria-label="Default select example"
                                     id="task-username-input">
                                     <option selected>-- Selecionar Responsável -- </option>
                                     <option value="Thiago">Thiago</option>
@@ -72,15 +89,18 @@
                             </div>
                             <div class="formc-group">
                                 <label for="">Descrição</label>
-                                <textarea id="task-description-input" class="form-control" type="name" name="description">
+                                <textarea id="task-description-input" class="form-control" type="name"
+                                    name="description">
                                 </textarea>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-primary" id="btn-create" onclick="createTaks()" data-bs-dismiss="modal">Criar</button>
-                        <button type="button" class="btn btn-primary" id="btn-edit" style="display: none;" onclick="updateTaks()" data-bs-dismiss="modal">Editar</button>
+                        <button type="button" class="btn btn-primary" id="btn-create" onclick="createTaks()"
+                            data-bs-dismiss="modal">Criar</button>
+                        <button type="button" class="btn btn-primary" id="btn-edit" style="display: none;"
+                            onclick="updateTaks()" data-bs-dismiss="modal">Editar</button>
                     </div>
                 </div>
             </form>
@@ -90,7 +110,7 @@
     <script src="script/jquery.min.js"></script>
     <script src="script/bootstrap.min.js"></script>
 
-    
+
     <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-database.js"></script>
 

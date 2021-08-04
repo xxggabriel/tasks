@@ -11,8 +11,9 @@ header {
     border: solid 1px #c3c3c3;
     min-height: 50px;
     border-radius: 5px;
-    padding: 20px 30px;
+    padding: 10px 30px;
     margin-bottom: 25px;
+    line-height: 15px;
 }
 
 .task-completed {
@@ -25,7 +26,8 @@ header {
 }
 
 .tasks-title {
-    font-size: 20px;
+    line-height: 10px;
+    font-size: 15px;
     font-weight: bold;
 }
 
