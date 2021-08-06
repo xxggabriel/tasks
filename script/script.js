@@ -248,7 +248,8 @@ function loadTasks() {
 
 
                 if (task.completed) {
-                    if(task.timesFinished > 2){
+                    let timesFinished = task.timesFinished ?? 0
+                    if(timesFinished > 2){
                         $(`#taks-done-${key}`).hide();
                         $(`#taks-edit-${key}`).hide();
                     } else {
@@ -272,10 +273,11 @@ function getTask(taskId){
 
 function doneTask(taskId) {
     getTask(taskId).then((task) => {
+        let taskFinished = task.timesFinished ?? 0;
         if(task.completed){
-            task_database.completed(taskId, task.timesFinished, false)
+            task_database.completed(taskId, taskFinished, false)
         } else {
-            task_database.completed(taskId, task.timesFinished += 1,true)
+            task_database.completed(taskId, taskFinished += 1,true)
             $(`#task-item-${taskId}`).hide("slow");
         }
         
